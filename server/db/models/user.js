@@ -13,17 +13,20 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     createdAt: {
       type: DataTypes.DATE(3),
-      field: 'created_at'
     },
     updatedAt: {
       type: DataTypes.DATE(3),
-      field: 'updated_at'
     },
   }, {
-    timestamps: true,
-    underscored: true,
-  });
-  User.associate = function(models) {
+      timestamps: true,
+      indexes: [
+        {
+          unique: true,
+          fields: ['username', 'email']
+        }
+      ]
+    });
+  User.associate = function (models) {
     // associations can be defined here
   };
   return User;

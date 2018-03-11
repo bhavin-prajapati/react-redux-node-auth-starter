@@ -1,4 +1,5 @@
-import FormData from 'form-data';
+import fetch from 'node-fetch';
+import qs from 'qs';
 import * as auth from '../actions/auth';
 import { BASE_URL, REGISTER_ENDPOINT, SIGNIN_ENDPOINT } from '../utils/constants';
 
@@ -7,28 +8,25 @@ export const register = (username, email, password) => {
     dispatch(auth.register());
 
     // Register call
-    const form = new FormData();
-    form.append('username', username);
-    form.append('email', email);
-    form.append('password', password);
-
     const options = {
-      method: 'POST',
+      method: 'post',
       headers: {
-        Accept: 'application/json, application/xml, text/plain, text/html, *.*',
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
-      body: form
+      body: qs.stringify({
+        username: username,
+        email: email,
+        password: password
+      })
     };
     fetch(BASE_URL + REGISTER_ENDPOINT, options)
-      .then(function (response) {
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
+      .then(res => res.json())
+      .then((response) => {
+        if (response.error) {
+          dispatch(auth.registerFailed(response.error));
+        } else {
+          dispatch(auth.registerSuccess(response.message));
         }
-        return response.json();
-      })
-      .then(function (stories) {
-        console.log(stories);
       });
   };
 };

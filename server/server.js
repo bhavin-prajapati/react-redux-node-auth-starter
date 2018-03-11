@@ -3,7 +3,7 @@ const express = require('express'),
     port = process.env.PORT || 8080,
     bodyParser = require('body-parser'),
     jsonwebtoken = require("jsonwebtoken"),
-    Auth = require('./controller/AuthController');
+    User = require('./controller/UserController');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -23,8 +23,8 @@ app.use(function (req, res, next) {
 });
 
 // Authentication Routes
-app.post('/auth/register', Auth.register);
-app.post('/auth/signin', Auth.signin);
+app.post('/auth/register', User.register);
+app.post('/auth/signin', User.signin);
 
 // Secure Routes
 app.get('/api/secureroute', );

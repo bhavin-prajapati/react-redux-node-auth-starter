@@ -1,0 +1,14 @@
+.sign-in-page {
+  text-align: center;
+}
+
+.sign-in-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.sign-in-title {
+  font-size: 1.5em;
+}

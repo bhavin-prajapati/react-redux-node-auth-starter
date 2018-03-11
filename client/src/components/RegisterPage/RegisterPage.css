@@ -1,0 +1,45 @@
+.register-page {
+  text-align: center;
+  font-size: 1em;
+}
+
+.register-page .content {
+  margin: 0 auto;
+  width: 300px;
+  height: 140px;
+  border: 1px solid;
+  margin-top: 20px;
+  padding: 37px 0;
+}
+
+.register-page .header {
+  background-color: #222;
+  height: 70px;
+  padding: 20px;
+  color: white;
+}
+
+.register-page .title {
+  font-size: 1.5em;
+}
+
+.register-page .username, .register-page .email, .register-page .password {
+  display: inline-block;
+  padding: 10px;
+}
+
+.register-page input {
+  font-size: 1em;
+}
+
+.register-page .register {
+  font-size: 1em;
+  float: right;
+  margin: 16px;
+}
+.register-page .login {
+  font-size: 1em;
+  float: right;
+  margin: 16px;
+}
+

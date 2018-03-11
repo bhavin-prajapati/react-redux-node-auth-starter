@@ -1,0 +1,45 @@
+.sign-in-page {
+  text-align: center;
+  font-size: 1em;
+}
+
+.sign-in-page .content {
+  margin: 0 auto;
+  width: 300px;
+  height: 100px;
+  border: 1px solid;
+  margin-top: 20px;
+  padding: 37px 0;
+}
+
+.sign-in-page .header {
+  background-color: #222;
+  height: 70px;
+  padding: 20px;
+  color: white;
+}
+
+.sign-in-page .title {
+  font-size: 1.5em;
+}
+
+.sign-in-page .username, .sign-in-page .password {
+  display: inline-block;
+  padding: 10px;
+}
+
+.sign-in-page input {
+  font-size: 1em;
+}
+
+.sign-in-page .register {
+  font-size: 1em;
+  float: right;
+  margin: 16px;
+}
+.sign-in-page .login {
+  font-size: 1em;
+  float: right;
+  margin: 16px;
+}
+

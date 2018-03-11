@@ -1,0 +1,61 @@
+{
+    "extends": "airbnb",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "impliedStrict": true
+        }
+    },
+    "rules": {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/prefer-stateless-function": "off",
+      "react/no-string-refs": "off",
+      "no-restricted-syntax": [
+        "error",
+        "LabeledStatement",
+        "WithStatement"
+      ],
+      "max-len": [
+        "warn",
+        120,
+        {"ignoreStrings": true}
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "import/no-named-as-default-member": "off",
+      "no-prototype-builtins": "off",
+      "no-console": "off",
+      "arrow-body-style": "off",
+      "no-use-before-define": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "prefer-arrow-callback": 0,
+      "global-require": "off",
+      "object-shorthand": "off",
+      "func-names": "off",
+      "new-cap": "off",
+      "radix": [
+        "error",
+        "as-needed"
+      ]
+    },
+    "globals": {
+      "window": true,
+      "document": true,
+      "chai": true,
+      "it": true,
+      "xit": true,
+      "expect": true,
+      "describe": true,
+      "afterEach": true,
+      "beforeEach": true,
+      "after": true,
+      "before": true
+    },
+    "env": {
+      "jest": true,
+      "browser": 1
+    }
+  }

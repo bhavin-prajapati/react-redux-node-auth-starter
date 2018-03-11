@@ -18,7 +18,15 @@ class RegisterPageComponent extends Component {
   }
 
   render() {
-    const { message } = this.props;
+    console.log('this.props', this.props);
+    const { error, message } = this.props;
+
+    let notification = '';
+    if (error) {
+      notification = <div className="error">{error}</div>;
+    } else {
+      notification = <div className="message">{message}</div>;
+    }
 
     return (
       <div className="register-page">
@@ -30,7 +38,7 @@ class RegisterPageComponent extends Component {
           <div className="email">Email:</div><input ref="email" name="email" type="text" /><br />
           <div className="password">Password:</div><input ref="password" name="password" type="password" /><br />
           <button className="register" onClick={() => { this.props.register(this.refs.username.value, this.refs.email.value, this.refs.password.value); }}>Register</button>
-          <div className="message">{message}</div>
+          {notification}
           <a className="register" href="/signin">Sign in</a>
         </div>
       </div>
@@ -42,19 +50,22 @@ RegisterPageComponent.propTypes = {
   register: PropTypes.func.isRequired,
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   pageStatus: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
+  error: PropTypes.string
 };
 
 RegisterPageComponent.defaultProps = {
   pageStatus: '',
   message: '',
+  error: '',
   history: null
 };
 
 const mapStateToProps = (state) => {
   return {
     pageStatus: state.auth.pageStatus,
-    message: state.auth.message
+    message: state.auth.message,
+    error: state.auth.error
   };
 };
 

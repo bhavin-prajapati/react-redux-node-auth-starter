@@ -6,7 +6,7 @@
 .register-page .content {
   margin: 0 auto;
   width: 300px;
-  height: 140px;
+  height: auto;
   border: 1px solid;
   margin-top: 20px;
   padding: 37px 0;
@@ -34,12 +34,25 @@
 
 .register-page .register {
   font-size: 1em;
-  float: right;
   margin: 16px;
 }
+
+.register-page .error {
+  font-size: 0.8em;
+  color: red;
+  background-color: yellow;
+  margin: 10px;
+}
+
+.register-page .message {
+  font-size: 0.8em;
+  color: green;
+  background-color: lightblue;
+  margin: 10px;
+}
+
 .register-page .login {
   font-size: 1em;
-  float: right;
   margin: 16px;
 }
 

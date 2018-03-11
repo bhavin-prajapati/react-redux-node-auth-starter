@@ -8,8 +8,8 @@ export const registerSuccess = (message) => {
   return { type: REGISTER_SUCCESS, data: message };
 };
 
-export const registerFailed = (message) => {
-  return { type: REGISTER_FAIL, data: message };
+export const registerFailed = (error) => {
+  return { type: REGISTER_FAIL, data: error };
 };
 
 export const login = () => {

@@ -5,9 +5,19 @@ export default (state = Object.assign({}), action) => {
     case (REGISTER):
       return Object.assign({}, state, { pageStatus: REGISTER, prevPageStatus: state.pageStatus });
     case (REGISTER_SUCCESS):
-      return Object.assign({}, state, { pageStatus: REGISTER_SUCCESS, message: action.data, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: REGISTER_SUCCESS,
+        message: action.data,
+        error: null,
+        prevPageStatus: state.pageStatus
+      });
     case (REGISTER_FAIL):
-      return Object.assign({}, state, { pageStatus: REGISTER_FAIL, message: action.data, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: REGISTER_FAIL,
+        message: null,
+        error: action.data,
+        prevPageStatus: state.pageStatus
+      });
     case (LOG_IN):
       return Object.assign({}, state, { pageStatus: LOG_IN, prevPageStatus: state.pageStatus });
     case (LOG_IN_SUCCESS):

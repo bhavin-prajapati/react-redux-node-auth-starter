@@ -13,12 +13,11 @@ class RegisterPageComponent extends Component {
     if (this.props.pageStatus === REGISTER_SUCCESS) {
       setTimeout(() => {
         this.props.history.push('/signin');
-      }, 3000);
+      }, 2000);
     }
   }
 
   render() {
-    console.log('this.props', this.props);
     const { error, message } = this.props;
 
     let notification = '';

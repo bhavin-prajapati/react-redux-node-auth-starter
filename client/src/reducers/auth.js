@@ -19,11 +19,26 @@ export default (state = Object.assign({}), action) => {
         prevPageStatus: state.pageStatus
       });
     case (LOG_IN):
-      return Object.assign({}, state, { pageStatus: LOG_IN, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: LOG_IN,
+        message: action.data,
+        error: null,
+        prevPageStatus: state.pageStatus
+      });
     case (LOG_IN_SUCCESS):
-      return Object.assign({}, state, { pageStatus: LOG_IN_SUCCESS, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: LOG_IN_SUCCESS,
+        message: action.data,
+        error: null,
+        prevPageStatus: state.pageStatus
+      });
     case (LOG_IN_FAIL):
-      return Object.assign({}, state, { pageStatus: LOG_IN_FAIL, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: LOG_IN_FAIL,
+        message: null,
+        error: action.data,
+        prevPageStatus: state.pageStatus
+      });
     case (LOG_OUT):
       return Object.assign({}, state, { pageStatus: LOG_OUT, prevPageStatus: state.pageStatus });
     case (LOG_OUT_SUCCESS):

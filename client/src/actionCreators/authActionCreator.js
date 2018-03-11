@@ -36,34 +36,25 @@ export const login = (username, password) => {
     dispatch(auth.login(username, password));
 
     // Login call
-    const form = new FormData();
-    form.append('username', username);
-    form.append('password', password);
-
     const options = {
-      method: 'POST',
+      method: 'post',
       headers: {
-        Accept: 'application/json, application/xml, text/plain, text/html, *.*',
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
-      body: form
+      body: qs.stringify({
+        username: username,
+        password: password
+      })
     };
     fetch(BASE_URL + SIGNIN_ENDPOINT, options)
-      .then(function (response) {
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
+      .then(res => res.json())
+      .then((response) => {
+        if (response.error) {
+          dispatch(auth.loginFailed(response.error));
+        } else {
+          dispatch(auth.loginSuccess(response.message));
         }
-        return response.json();
-      })
-      .then(function (stories) {
-        console.log(stories);
       });
-  };
-};
-
-export const loginFailed = () => {
-  return (dispatch) => {
-    dispatch(auth.loginFailed());
   };
 };
 

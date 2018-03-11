@@ -14,18 +14,18 @@ export const register = (req, res) => {
       where: {
         username: req.body.username,
       }
-    }).then(username => {
-      if (!username) {
+    }).then(user_by_name => {
+      if (!user_by_name) {
         db.User.findOne({
           where: {
             email: req.body.email,
           }
-        }).then(user => {
-          if (!user) {
+        }).then(user_by_email => {
+          if (!user_by_email) {
             db.User.create({
               username: req.body.username,
               email: req.body.email,
-              password: req.body.password,
+              password: bcrypt.hashSync(req.body.password, 10),
             }).then(user => {
               return res.send({
                 message: 'User successfully created.'
@@ -48,44 +48,37 @@ export const register = (req, res) => {
       error: 'Invalid Request'
     });
   }
-
-  // db.User
-  //   .findOrCreate({
-  //     where: {
-  //       username: req.body.username,
-  //       email: req.body.email,
-  //       password: req.body.password
-  //     }
-  //   })
-  //   .spread((user, created) => {
-  //     if (!created) {
-  //       return res.status(400).send({
-  //         message: 'User with this email already exists.'
-  //       });
-  //     } else {
-  //       return res.status(200).send({
-  //         message: 'User successfully created.'
-  //       });
-  //     }
-  //   });
 };
 
 export const signin = (req, res) => {
-  console.log('signin', req.body);
-  // User.findOne({
-  //   email: req.body.email
-  // }, function(err, user) {
-  //   if (err) throw err;
-  //   if (!user) {
-  //     res.status(401).json({ message: 'Authentication failed. User not found.' });
-  //   } else if (user) {
-  //     if (user.comparePassword(req.body.password)) {
-  //       res.status(401).json({ message: 'Authentication failed. Wrong password.' });
-  //     } else {
-  //       return res.json({token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id}, 'RESTFULAPIs')});
-  //     }
-  //   }
-  // });
+  console.log(req.body.username);
+  console.log(req.body.password);
+
+  db.User.findOne({
+    where: {
+      username: req.body.username,
+    }
+  }).then(user => {
+    if (user) {
+      console.log('user', user.id);
+      console.log('username', user.username);
+      console.log('email', user.email);
+      console.log('user', user.password);
+      const isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
+      console.log('isPasswordValid', isPasswordValid);
+      if (!isPasswordValid) {
+        return res.send({
+          error: 'Invalid Username or Password'
+        });
+      } else {
+        return res.json({token: jwt.sign({ username: user.username, email: user.email, id: user.id}, 'RESTFULAPIs')});
+      }
+    } else {
+      return res.send({
+        error: 'Invalid Username or Password'
+      });
+    }
+  });
 };
 
 export const loginRequired = (req, res, next) => {

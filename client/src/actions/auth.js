@@ -16,12 +16,12 @@ export const login = () => {
   return { type: LOG_IN };
 };
 
-export const loginSuccess = () => {
-  return { type: LOG_IN_SUCCESS };
+export const loginSuccess = (message) => {
+  return { type: LOG_IN_SUCCESS, data: message };
 };
 
-export const loginFailed = () => {
-  return { type: LOG_IN_FAIL };
+export const loginFailed = (error) => {
+  return { type: LOG_IN_FAIL, data: error };
 };
 
 export const logout = () => {

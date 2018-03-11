@@ -4,11 +4,11 @@
   "description": "server using resource owner password credentials grant",
   "main": "server.js",
   "scripts": {
+    "db:create": "node_modules/.bin/sequelize db:create",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
-    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2",
-    "build": "babel lib -d dist",
-    "serve": "node dist/index.js",
-    "test": "mocha --compilers js:babel-register"
+    "db:seed": "node_modules/.bin/sequelize db:seed:all",
+    "db:setup": "npm run db:create; npm run db:migrate; npm run db:seed;",
+    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2"
   },
   "repository": {
     "type": "git",

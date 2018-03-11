@@ -22,7 +22,7 @@ class SignInPageComponent extends Component {
         </header>
         <div className="content">
           <div className="username">Username:</div><input ref="username" name="username" type="text" /><br />
-          <div className="password">Password:</div><input ref="password" name="password" type="text" /><br />
+          <div className="password">Password:</div><input ref="password" name="password" type="password" /><br />
           <button className="login" onClick={() => { this.props.login(this.refs.username.value, this.refs.password.value); }}>Login</button>
           <a className="register" href="/register">Register</a>
         </div>

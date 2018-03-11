@@ -1,15 +1,65 @@
+import FormData from 'form-data';
 import * as auth from '../actions/auth';
+import { BASE_URL, REGISTER_ENDPOINT, SIGNIN_ENDPOINT } from '../utils/constants';
+
+export const register = (username, email, password) => {
+  return (dispatch) => {
+    dispatch(auth.register());
+
+    // Register call
+    const form = new FormData();
+    form.append('username', username);
+    form.append('email', email);
+    form.append('password', password);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, application/xml, text/plain, text/html, *.*',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      body: form
+    };
+    fetch(BASE_URL + REGISTER_ENDPOINT, options)
+      .then(function (response) {
+        if (response.status >= 400) {
+          throw new Error('Bad response from server');
+        }
+        return response.json();
+      })
+      .then(function (stories) {
+        console.log(stories);
+      });
+  };
+};
 
 export const login = (username, password) => {
-  console.log('username', username);
-  console.log('password', password);
   return (dispatch) => {
-    dispatch(auth.login());
+    dispatch(auth.login(username, password));
 
-    // Login call is made here and success after 2 seconds
-    setTimeout(() => {
-      dispatch(auth.loginSuccess());
-    }, 2000);
+    // Login call
+    const form = new FormData();
+    form.append('username', username);
+    form.append('password', password);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, application/xml, text/plain, text/html, *.*',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      body: form
+    };
+    fetch(BASE_URL + SIGNIN_ENDPOINT, options)
+      .then(function (response) {
+        if (response.status >= 400) {
+          throw new Error('Bad response from server');
+        }
+        return response.json();
+      })
+      .then(function (stories) {
+        console.log(stories);
+      });
   };
 };
 
@@ -36,11 +86,3 @@ export const logoutFailed = () => {
   };
 };
 
-export const register = (username, email, password) => {
-  console.log('username', username);
-  console.log('email', email);
-  console.log('password', password);
-  return (dispatch) => {
-    dispatch(auth.register());
-  };
-};

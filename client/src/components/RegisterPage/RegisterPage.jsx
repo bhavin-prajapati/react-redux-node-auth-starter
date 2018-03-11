@@ -23,7 +23,7 @@ class RegisterPageComponent extends Component {
         <div className="content">
           <div className="username">Username:</div><input ref="username" name="username" type="text" /><br />
           <div className="email">Email:</div><input ref="email" name="email" type="text" /><br />
-          <div className="password">Password:</div><input ref="password" name="password" type="text" /><br />
+          <div className="password">Password:</div><input ref="password" name="password" type="password" /><br />
           <button className="register" onClick={() => { this.props.register(this.refs.username.value, this.refs.email.value, this.refs.password.value); }}>Register</button>
           <a className="register" href="/signin">Sign in</a>
         </div>

@@ -3,6 +3,7 @@ import { REGISTER, LOG_IN, LOG_IN_SUCCESS, LOG_IN_FAIL, LOG_OUT, LOG_OUT_SUCCESS
 export default (state = Object.assign({}), action) => {
   switch (action.type) {
     case (REGISTER):
+      console.log(action.data);
       return Object.assign({}, state, { pageStatus: 'register', prevPageStatus: state.pageStatus });
     case (LOG_IN):
       return Object.assign({}, state, { pageStatus: 'logging_in', prevPageStatus: state.pageStatus });

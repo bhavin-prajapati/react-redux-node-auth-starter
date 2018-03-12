@@ -3,18 +3,11 @@ const express = require('express'),
     port = process.env.PORT || 8080,
     bodyParser = require('body-parser'),
     jsonwebtoken = require("jsonwebtoken"),
-    cors = require('cors'),
     User = require('./controller/UserController'),
     Dashboard = require('./controller/DashboardController');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    credentials: true,
-};
-app.use(cors(corsOptions));
 
 // Authentication Middleware
 app.use(function (req, res, next) {

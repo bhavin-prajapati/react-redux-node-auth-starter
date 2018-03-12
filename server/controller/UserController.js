@@ -2,6 +2,7 @@ const sequelize = require('sequelize');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('../db/models');
+const { JWT_SECRET } = require('../utils/constants');
 
 export const register = (req, res) => {
 
@@ -71,7 +72,11 @@ export const signin = (req, res) => {
           error: 'Invalid Username or Password'
         });
       } else {
-        return res.json({token: jwt.sign({ username: user.username, email: user.email, id: user.id}, 'RESTFULAPIs')});
+        const jwt_token = jwt.sign({ username: user.username, email: user.email, id: user.id }, JWT_SECRET);
+        res.cookie('_sid', jwt_token, { maxAge: 1800000, httpOnly: true });
+        return res.send({
+          message: 'User login successful.'
+        });
       }
     } else {
       return res.send({

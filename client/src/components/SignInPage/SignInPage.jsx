@@ -9,11 +9,10 @@ import './SignInPage.css';
 
 class SignInPageComponent extends Component {
   componentDidUpdate() {
-    console.log('this.props.pageStatus', this.props.pageStatus);
     if (this.props.pageStatus === LOG_IN_SUCCESS) {
       setTimeout(() => {
         this.props.history.push('/');
-      }, 2000);
+      }, 1000);
     }
   }
 

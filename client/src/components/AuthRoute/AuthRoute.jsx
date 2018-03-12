@@ -3,12 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
-import { LOG_IN_SUCCESS } from '../../utils/constants';
+import { getCookie } from '../../utils/cookie';
 
 const AuthRoute = ({ component: Component, pageStatus, ...rest }) => (
   <Route
     {...rest}
-    render={props => (pageStatus === LOG_IN_SUCCESS ? <Component {...props} /> : <Redirect to={{ pathname: '/signin' }} />)}
+    render={(props) => {
+      console.log('getCookie', getCookie('_sid'));
+      if (getCookie('_sid')) {
+        return (<Component {...props} />);
+      }
+      return (<Redirect to={{ pathname: '/signin' }} />);
+    }}
   />
 );
 

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as pageActionCreator from '../../actionCreators/authActionCreator';
+import * as authActionCreator from '../../actionCreators/authActionCreator';
 import './Dashboard.css';
 
 class DashboardComponent extends Component {
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logout: pageActionCreator.logout
+    logout: authActionCreator.logout
   }, dispatch);
 };
 

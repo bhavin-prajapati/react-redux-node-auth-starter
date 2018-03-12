@@ -86,6 +86,13 @@ export const signin = (req, res) => {
   });
 };
 
+export const logout = (req, res) => {
+  res.clearCookie("_sid");
+  return res.send({
+    message: 'User logout successful.'
+  });
+};
+
 export const loginRequired = (req, res, next) => {
   if (req.user) {
     next();

@@ -21,7 +21,7 @@ export default (state = Object.assign({}), action) => {
     case (LOG_IN):
       return Object.assign({}, state, {
         pageStatus: LOG_IN,
-        message: action.data,
+        message: null,
         error: null,
         prevPageStatus: state.pageStatus
       });
@@ -40,11 +40,26 @@ export default (state = Object.assign({}), action) => {
         prevPageStatus: state.pageStatus
       });
     case (LOG_OUT):
-      return Object.assign({}, state, { pageStatus: LOG_OUT, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: LOG_OUT,
+        message: null,
+        error: null,
+        prevPageStatus: state.pageStatus
+      });
     case (LOG_OUT_SUCCESS):
-      return Object.assign({}, state, { pageStatus: LOG_OUT_SUCCESS, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: LOG_OUT_SUCCESS,
+        message: action.data,
+        error: null,
+        prevPageStatus: state.pageStatus
+      });
     case (LOG_OUT_FAIL):
-      return Object.assign({}, state, { pageStatus: LOG_OUT_FAIL, prevPageStatus: state.pageStatus });
+      return Object.assign({}, state, {
+        pageStatus: LOG_OUT_FAIL,
+        message: null,
+        error: action.data,
+        prevPageStatus: state.pageStatus
+      });
     default:
       return state;
   }

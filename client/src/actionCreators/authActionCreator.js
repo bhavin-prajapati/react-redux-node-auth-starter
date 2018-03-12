@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import qs from 'qs';
 import * as auth from '../actions/auth';
-import { BASE_URL, REGISTER_ENDPOINT, SIGNIN_ENDPOINT } from '../utils/constants';
+import { BASE_URL, REGISTER_ENDPOINT, SIGNIN_ENDPOINT, LOGOUT_ENDPOINT } from '../utils/constants';
 
 export const register = (username, email, password) => {
   return (dispatch) => {
@@ -38,6 +38,7 @@ export const login = (username, password) => {
     // Login call
     const options = {
       method: 'post',
+      credentials: 'include', // Don't forget to specify this if you need cookies
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
@@ -62,10 +63,16 @@ export const logout = () => {
   return (dispatch) => {
     dispatch(auth.logout());
 
-    // Logout call is made here and success after 2 seconds
-    setTimeout(() => {
-      dispatch(auth.logoutSuccess());
-    }, 2000);
+    // Logout call
+    fetch(BASE_URL + LOGOUT_ENDPOINT)
+      .then(res => res.json())
+      .then((response) => {
+        if (response.error) {
+          dispatch(auth.logoutFailed(response.error));
+        } else {
+          dispatch(auth.logoutSuccess(response.message));
+        }
+      });
   };
 };
 
@@ -74,4 +81,3 @@ export const logoutFailed = () => {
     dispatch(auth.logoutFailed());
   };
 };
-

@@ -3,10 +3,18 @@ const express = require('express'),
     port = process.env.PORT || 8080,
     bodyParser = require('body-parser'),
     jsonwebtoken = require("jsonwebtoken"),
-    User = require('./controller/UserController');
+    cors = require('cors'),
+    User = require('./controller/UserController'),
+    Dashboard = require('./controller/DashboardController');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+};
+app.use(cors(corsOptions));
 
 // Authentication Middleware
 app.use(function (req, res, next) {
@@ -25,9 +33,10 @@ app.use(function (req, res, next) {
 // Authentication Routes
 app.post('/auth/register', User.register);
 app.post('/auth/signin', User.signin);
+app.get('/auth/logout', User.logout);
 
 // Secure Routes
-app.get('/api/secureroute', );
+app.get('/dashboard', Dashboard.loadDashboard);
 
 app.use(function (req, res) {
     res.status(404).send({ url: req.originalUrl + ' not found' })

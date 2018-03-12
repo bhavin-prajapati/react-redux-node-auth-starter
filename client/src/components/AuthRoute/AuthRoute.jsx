@@ -3,13 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
+import { SESSION_COOKIE_NAME } from '../../utils/constants';
 import { getCookie } from '../../utils/cookie';
 
 const AuthRoute = ({ component: Component, pageStatus, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
-      console.log('getCookie', getCookie('_sid'));
+      console.log('getCookie', getCookie(SESSION_COOKIE_NAME));
       if (getCookie('_sid')) {
         return (<Component {...props} />);
       }

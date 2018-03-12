@@ -14,4 +14,5 @@ export const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
 export const REGISTER_ENDPOINT = '/auth/register';
 export const SIGNIN_ENDPOINT = '/auth/signin';
 export const LOGOUT_ENDPOINT = '/auth/logout';
+export const SESSION_COOKIE_NAME = '_sid';
 

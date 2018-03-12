@@ -2,7 +2,7 @@ const sequelize = require('sequelize');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('../db/models');
-const { JWT_SECRET } = require('../utils/constants');
+const { SESSION_COOKIE_NAME, JWT_SECRET } = require('../utils/constants');
 
 export const register = (req, res) => {
 
@@ -73,7 +73,7 @@ export const signin = (req, res) => {
         });
       } else {
         const jwt_token = jwt.sign({ username: user.username, email: user.email, id: user.id }, JWT_SECRET);
-        res.cookie('_sid', jwt_token, { maxAge: 1800000, httpOnly: true });
+        res.cookie(SESSION_COOKIE_NAME, jwt_token, { maxAge: 1800000, httpOnly: true });
         return res.send({
           message: 'User login successful.'
         });
@@ -87,7 +87,7 @@ export const signin = (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.clearCookie("_sid");
+  res.clearCookie(SESSION_COOKIE_NAME);
   return res.send({
     message: 'User logout successful.'
   });

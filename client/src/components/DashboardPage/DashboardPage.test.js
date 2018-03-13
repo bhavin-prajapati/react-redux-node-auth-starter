@@ -1,17 +1,17 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { SignInComponent } from './SignInPage';
+import { DashboardComponent } from './DashboardPage';
 
 configure({ adapter: new Adapter() });
 
-describe('Sign In Page', () => {
+describe('Dashboard Page', () => {
   let subject;
-  let mockLogin;
+  let mockLogout;
 
   beforeEach(() => {
-    mockLogin = jest.fn();
-    subject = shallow(<SignInComponent login={mockLogin} />);
+    mockLogout = jest.fn();
+    subject = shallow(<DashboardComponent logout={mockLogout} />);
   });
 
   it('Can Mount', () => {

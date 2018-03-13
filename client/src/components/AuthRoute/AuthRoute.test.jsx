@@ -1,33 +1,26 @@
 import React from 'react';
-import AuthRoute from './AuthRoute';
-import '../../setupTests';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { AuthRoute } from './AuthRoute';
+
+configure({ adapter: new Adapter() });
 
 describe('Authenticaion Route', () => {
-  it('Can Mount', () => {
-    const mockComponent = {};
-    const subject = shallow(<AuthRoute
-      Component={mockComponent}
+  let subject;
+  let mockComponent;
+
+  beforeEach(() => {
+    mockComponent = () => {};
+    subject = shallow(<AuthRoute
+      component={mockComponent}
     />);
+  });
+
+  it('Can Mount', () => {
     expect(subject).toHaveLength(1);
   });
 
   it('Redirects to URL', () => {
-    const mockComponent = {};
-    const subject = shallow(<AuthRoute
-      Component={mockComponent}
-    />);
-    expect(subject.text()).toEqual('<Route />');
-  });
-
-  it('Renders Component', () => {
-    class mockComponent extends React.PureComponent {
-      componentWillMount() {
-      }
-    }
-    const subject = shallow(<AuthRoute
-      Component={mockComponent}
-      pageStatus="login_success"
-    />);
     expect(subject.text()).toEqual('<Route />');
   });
 });

@@ -1,15 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import RegisterPage from './RegisterPage';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { RegisterComponent } from './RegisterPage';
 
-describe('Sign In Page', () => {
+configure({ adapter: new Adapter() });
+
+describe('Register Page', () => {
+  let subject;
+  let mockRegister;
+
   beforeEach(() => {
-
+    mockRegister = jest.fn();
+    subject = shallow(<RegisterComponent register={mockRegister} />);
   });
 
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<RegisterPage />, div);
-    ReactDOM.unmountComponentAtNode(div);
+  it('Can Mount', () => {
+    expect(subject).toHaveLength(1);
   });
 });

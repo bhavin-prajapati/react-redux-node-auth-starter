@@ -7,7 +7,7 @@ import { LOG_IN_SUCCESS } from '../../utils/constants';
 import * as pageActionCreator from '../../actionCreators/authActionCreator';
 import './SignInPage.css';
 
-class SignInPageComponent extends Component {
+export class SignInComponent extends Component {
   componentDidUpdate() {
     if (this.props.pageStatus === LOG_IN_SUCCESS) {
       setTimeout(() => {
@@ -43,7 +43,7 @@ class SignInPageComponent extends Component {
   }
 }
 
-SignInPageComponent.propTypes = {
+SignInComponent.propTypes = {
   login: PropTypes.func.isRequired,
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   pageStatus: PropTypes.string,
@@ -51,7 +51,7 @@ SignInPageComponent.propTypes = {
   error: PropTypes.string
 };
 
-SignInPageComponent.defaultProps = {
+SignInComponent.defaultProps = {
   pageStatus: '',
   message: '',
   error: '',
@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch) => {
 const SignInPage = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignInPageComponent));
+)(SignInComponent));
 
 export default SignInPage;
 

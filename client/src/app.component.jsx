@@ -9,7 +9,7 @@ import appReducers from './reducers';
 import AuthenticatedRoute from './components/AuthRoute/AuthRoute';
 import SignInPage from './components/SignInPage/SignInPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
-import Dashboard from './components/Dashboard/Dashboard';
+import DashboardPage from './components/DashboardPage/DashboardPage';
 
 export default () => {
   const middlewares = [thunkMiddleware];
@@ -29,7 +29,7 @@ export default () => {
           <Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/signin" component={SignInPage} />
-          <AuthenticatedRoute path="/dashboard" component={Dashboard} />
+          <AuthenticatedRoute path="/dashboard" component={DashboardPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

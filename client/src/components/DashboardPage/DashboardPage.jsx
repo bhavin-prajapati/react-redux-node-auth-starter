@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as authActionCreator from '../../actionCreators/authActionCreator';
-import './Dashboard.css';
+import './DashboardPage.css';
 
-class DashboardComponent extends Component {
+export class DashboardComponent extends Component {
   render() {
     return (
       <div className="dashboard-page">
@@ -21,6 +21,9 @@ class DashboardComponent extends Component {
 
 DashboardComponent.propTypes = {
   logout: PropTypes.func.isRequired
+};
+
+DashboardComponent.defaultProps = {
 };
 
 const mapStateToProps = (state) => {

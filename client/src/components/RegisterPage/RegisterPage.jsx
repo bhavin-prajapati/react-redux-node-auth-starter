@@ -8,7 +8,7 @@ import { REGISTER_SUCCESS } from '../../utils/constants';
 import * as authActionCreator from '../../actionCreators/authActionCreator';
 import './RegisterPage.css';
 
-class RegisterPageComponent extends Component {
+export class RegisterComponent extends Component {
   componentDidUpdate() {
     if (this.props.pageStatus === REGISTER_SUCCESS) {
       setTimeout(() => {
@@ -45,7 +45,7 @@ class RegisterPageComponent extends Component {
   }
 }
 
-RegisterPageComponent.propTypes = {
+RegisterComponent.propTypes = {
   register: PropTypes.func.isRequired,
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   pageStatus: PropTypes.string,
@@ -53,7 +53,7 @@ RegisterPageComponent.propTypes = {
   error: PropTypes.string
 };
 
-RegisterPageComponent.defaultProps = {
+RegisterComponent.defaultProps = {
   pageStatus: '',
   message: '',
   error: '',
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
 const RegisterPage = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterPageComponent));
+)(RegisterComponent));
 
 export default RegisterPage;
 

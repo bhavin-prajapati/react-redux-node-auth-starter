@@ -1,14 +1,14 @@
-.sign-in-page {
+.dashboard-page {
   text-align: center;
 }
 
-.sign-in-header {
+.dashboard-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
 }
 
-.sign-in-title {
+.dashboard-title {
   font-size: 1.5em;
 }

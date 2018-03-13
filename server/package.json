@@ -28,7 +28,8 @@
     "jsonwebtoken": "^7.3.0",
     "mysql2": "^1.5.2",
     "sequelize": "^4.35.5",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^4.0.0",
+    "url-parse": "^1.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

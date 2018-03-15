@@ -42,7 +42,6 @@
     "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**.{js,jsx} --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/registerServiceWorker.js --coverage",
     "coverage": "npm run test; open file:///$PWD/coverage/lcov-report/index.html",
     "lint": "./node_modules/.bin/eslint . --fix",
-    "deploy": "cd public && cf push",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

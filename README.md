@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bhavin-prajapati/react-redux-node-auth-starter.svg?branch=master)](https://travis-ci.org/bhavin-prajapati/react-redux-node-auth-starter)
+
 # react-redux-node-auth-starter
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

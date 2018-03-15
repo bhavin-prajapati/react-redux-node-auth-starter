@@ -8,11 +8,11 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 - [Quick Setup](#quick-setup-for-client)
 - [Available Scripts](#available-client-scripts)
-  - [npm run start](#npm-start)
-  - [npm run test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run coverage](#npm-run-coverage)
-  - [npm run lint](#npm-run-lint)
+  - [npm run start](#start-client)
+  - [npm run lint](#lint-client)
+  - [npm run test](#test-client)
+  - [npm run build](#build-client)
+  - [npm run coverage](#test-coverage-client)
   - [npm run eject](#npm-run-eject)
 
 ## Server
@@ -25,7 +25,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [npm run db:setup](#npm-run-db:setup)
   - [npm run start](#npm-run-start)
 
-## Quick Setup
+## Quick Setup Client
 
 In the project directory, you can run:
 
@@ -36,7 +36,11 @@ npm run start
 
 ## Available Client Scripts
 
-### `npm run start`
+### `start client`
+
+```sh
+npm run start
+```
 
 Runs the client in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -44,12 +48,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm run test`
+### `lint client`
+
+```sh
+npm run lint
+```
+
+Runs ESLint on src folder.<br>
+
+### `test client`
+
+```sh
+npm run test
+```
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](#running-tests) for more information.
 
-### `npm run build`
+### `build client`
+
+```sh
+npm run build
+```
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -59,12 +79,11 @@ Your app is ready to be deployed!
 
 See the section about [deployment](#deployment) for more information.
 
-### `npm run coverage`
+### `test coverage client`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
-
-### `npm run lint`
+```sh
+npm run coverage
+```
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](#running-tests) for more information.
@@ -79,7 +98,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Quick Setup
+## Quick Setup Server
 
 In the project directory, you can run:
 

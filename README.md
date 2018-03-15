@@ -7,6 +7,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Client
 
 - [Quick Setup](#quick-setup-for-client)
+- [Client-side Libraries](#client-side-libraries)
 - [Available Scripts](#available-client-scripts)
   - [npm run start](#npm-run-start)
   - [npm run test](#npm-run-test)
@@ -18,6 +19,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Server
 
 - [Quick Setup](#quick-setup-for-server)
+- [Server-side Libraries](#server-side-libraries)
 - [Available Scripts](#available-server-scripts)
   - [npm run db:create](#npm-run-db:create)
   - [npm run db:migrate](#npm-run-db:migrate)
@@ -34,7 +36,15 @@ npm install
 npm run start
 ```
 
-## Available Client Scripts
+## Client-side Libraries
+
+* React
+* Redux
+* Jest
+* Istanbul
+* Axios
+
+## Available Server Scripts
 
 ### `npm run start`
 
@@ -88,20 +98,31 @@ npm install
 npm run db:setup
 npm run start
 ```
+## Server-side Libraries
+
+* React
+* Redux
+* Jest
+* Istanbul
+* Axios
 
 ## Available Server Scripts
 
 ### `npm run db:create`
 
+Creates the database based on configuration. (server/db/config)<br>
 
 ### `npm run db:migrate`
 
+Runs the migrations on the database. (server/db/migrations)<br>
 
 ### `npm run db:seed`
 
+Runs the seeds on the database. (server/db/seeders)<br>
 
 ### `npm run db:setup`
 
+Setup the whole database with one command.<br>
 
 ### `npm run start`
 

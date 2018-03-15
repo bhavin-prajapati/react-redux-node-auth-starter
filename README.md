@@ -46,8 +46,8 @@ You will also see any lint errors in the console.
 
 ### `npm run test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
+Launches the test runner (Jest) in the interactive watch mode.<br>
+Shows the test result with test coverage.
 
 ### `npm run build`
 
@@ -61,13 +61,13 @@ See the section about [deployment](#deployment) for more information.
 
 ### `npm run coverage`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
+Runs Istanbul the test runner in the interactive watch mode.<br>
+[https://istanbul.js.org/](https://istanbul.js.org/)
 
 ### `npm run lint`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
+Runs ESLint on the src folder as configured by .eslintrc<br>
+You will see all lint errors in the console.
 
 ### `npm run eject`
 

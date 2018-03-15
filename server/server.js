@@ -30,20 +30,16 @@ app.use(function (req, res, next) {
 });
 
 // CORS
-app.use((req, res, next) => {
-    res.removeHeader('x-powered-by');
-    const myURL = new URL(process.env.FRONTEND_URL || process.env.NODE_ENV !== 'local' ? process.env.FRONTEND_URL : req.get('Origin'));
-    const originURL = new URL(req.get('Origin') || `${req.protocol}://${req.get('host')}${req.originalUrl}`);
-    const originStr = `${originURL.protocol}//${myURL.hostname}${myURL.port !== '80' && myURL.port !== '443' && myURL.port.length > 0 ? `:${myURL.port}` : myURL.port}`;
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-    // res.header('Access-Control-Allow-Origin', '*');
-    // res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL)
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    // res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-    next();
-});
+if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'acceptance') {
+    app.use((req, res, next) => {
+        res.removeHeader('x-powered-by');
+        res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.header('Access-Control-Allow-Credentials', 'true');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+        next();
+    });
+}
 
 // Authentication Routes
 app.post('/auth/register', User.register);

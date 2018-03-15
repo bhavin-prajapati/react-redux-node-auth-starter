@@ -10,8 +10,7 @@ export const AuthRoute = ({ component: Component, pageStatus, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
-      // console.log('getCookie', getCookie(SESSION_COOKIE_NAME));
-      if (getCookie('_sid')) {
+      if (getCookie(SESSION_COOKIE_NAME)) {
         return (<Component {...props} />);
       }
       return (<Redirect to={{ pathname: '/signin' }} />);

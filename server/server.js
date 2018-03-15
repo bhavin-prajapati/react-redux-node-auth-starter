@@ -20,7 +20,6 @@ app.use(function (req, res, next) {
         jsonwebtoken.verify(req.cookies[SESSION_COOKIE_NAME], JWT_SECRET, (err, decode) => {
             if (err) req.user = undefined;
             req.user = decode;
-            console.log(req.user);
             next();
         });
     } else {

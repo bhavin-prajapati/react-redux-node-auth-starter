@@ -33,7 +33,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "rrc": "^0.10.1",
-    "svg-icon": "^0.8.2"
+    "svg-icon": "^0.8.2",
+    "universal-cookie": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

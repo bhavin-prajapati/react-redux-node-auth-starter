@@ -3,16 +3,23 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { LOG_IN_SUCCESS } from '../../utils/constants';
+import { getCookie } from '../../utils/cookie';
+import { SESSION_COOKIE_NAME } from '../../utils/constants';
 import * as pageActionCreator from '../../actionCreators/authActionCreator';
 import './SignInPage.css';
 
 export class SignInComponent extends Component {
+  componentWillMount() {
+    // When loading signin page if there's aleady a cookie, go to dashboard
+    if (getCookie(SESSION_COOKIE_NAME)) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   componentDidUpdate() {
-    if (this.props.pageStatus === LOG_IN_SUCCESS) {
-      setTimeout(() => {
-        this.props.history.push('/');
-      }, 1000);
+    // If user has logged in successfully, go to dashboard
+    if (getCookie(SESSION_COOKIE_NAME)) {
+      this.props.history.push('/dashboard');
     }
   }
 

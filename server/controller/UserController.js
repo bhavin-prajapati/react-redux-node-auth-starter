@@ -5,11 +5,6 @@ const db = require('../db/models');
 const { SESSION_COOKIE_NAME, JWT_SECRET } = require('../utils/constants');
 
 export const register = (req, res) => {
-
-  console.log(req.body.username);
-  console.log(req.body.email);
-  console.log(req.body.password);
-
   if (req.body.username, req.body.email, req.body.password) {
     db.User.findOne({
       where: {
@@ -52,28 +47,20 @@ export const register = (req, res) => {
 };
 
 export const signin = (req, res) => {
-  console.log(req.body.username);
-  console.log(req.body.password);
-
   db.User.findOne({
     where: {
       username: req.body.username,
     }
   }).then(user => {
     if (user) {
-      console.log('user', user.id);
-      console.log('username', user.username);
-      console.log('email', user.email);
-      console.log('user', user.password);
       const isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
-      console.log('isPasswordValid', isPasswordValid);
       if (!isPasswordValid) {
         return res.send({
           error: 'Invalid Username or Password'
         });
       } else {
         const jwt_token = jwt.sign({ username: user.username, email: user.email, id: user.id }, JWT_SECRET);
-        res.cookie(SESSION_COOKIE_NAME, jwt_token, { maxAge: 1800000, httpOnly: true });
+        res.cookie(SESSION_COOKIE_NAME, jwt_token, { maxAge: 1800000 });
         return res.send({
           message: 'User login successful.'
         });

@@ -3,10 +3,17 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { removeCookie } from '../../utils/cookie';
+import { SESSION_COOKIE_NAME } from '../../utils/constants';
 import * as authActionCreator from '../../actionCreators/authActionCreator';
 import './DashboardPage.css';
 
 export class DashboardComponent extends Component {
+  componentDidUpdate() {
+    removeCookie(SESSION_COOKIE_NAME); // Ensure cookie is removed
+    this.props.history.push('/signin');
+  }
+
   render() {
     return (
       <div className="dashboard-page">
@@ -20,10 +27,12 @@ export class DashboardComponent extends Component {
 }
 
 DashboardComponent.propTypes = {
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  history: PropTypes.object // eslint-disable-line react/forbid-prop-types
 };
 
 DashboardComponent.defaultProps = {
+  history: null
 };
 
 const mapStateToProps = (state) => {

@@ -64,7 +64,11 @@ export const logout = () => {
     dispatch(auth.logout());
 
     // Logout call
-    fetch(BASE_URL + LOGOUT_ENDPOINT)
+    const options = {
+      method: 'get',
+      credentials: 'include' // Don't forget to specify this if you need cookies
+    };
+    fetch(BASE_URL + LOGOUT_ENDPOINT, options)
       .then(res => res.json())
       .then((response) => {
         if (response.error) {

@@ -19,8 +19,8 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 - [Quick Setup](#quick-setup-for-server)
 - [Available Scripts](#available-server-scripts)
-  - [npm run db:create](#npm-db:create)
-  - [npm run db:migrate](#npm-db:migrate)
+  - [npm run db:create](#npm-run-db:create)
+  - [npm run db:migrate](#npm-run-db:migrate)
   - [npm run db:seed](#npm-run-db:seed)
   - [npm run db:setup](#npm-run-db:setup)
   - [npm run start](#npm-run-start)

@@ -100,11 +100,10 @@ npm run start
 ```
 ## Server-side Libraries
 
-* React
-* Redux
-* Jest
-* Istanbul
-* Axios
+* NodeJS
+* Express
+* Sequalize
+* Babel
 
 ## Available Server Scripts
 

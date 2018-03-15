@@ -91,12 +91,6 @@ npm run start
 
 ## Available Server Scripts
 
-  - [npm run db:create](#npm-db:create)
-  - [npm run db:migrate](#npm-db:migrate)
-  - [npm run db:seed](#npm-run-db:seed)
-  - [npm run db:setup](#npm-run-db:setup)
-  - [npm run start](#npm-run-start)
-
 ### `npm run db:create`
 
 

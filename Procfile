@@ -1,2 +1,2 @@
-web: cd client; npm install; npm run start
-api: cd server; npm install; npm run start
+web: cd client; npm run start
+api: cd server; npm run start

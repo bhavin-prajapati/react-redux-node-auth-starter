@@ -1,20 +1,43 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import { Grid, Col, Row, Panel, ButtonToolbar, Button, FormGroup, ControlLabel, FormControl, Alert } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import { REGISTER_SUCCESS } from '../../utils/constants';
 
 import * as authActionCreator from '../../actionCreators/authActionCreator';
-import './RegisterPage.css';
 
 export class RegisterComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.register = this.register.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      username: '',
+      email: '',
+      password: ''
+    };
+  }
+
   componentDidUpdate() {
     if (this.props.pageStatus === REGISTER_SUCCESS) {
       setTimeout(() => {
         this.props.history.push('/signin');
       }, 2000);
     }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  register() {
+    this.props.register(this.state.username, this.state.email, this.state.password);
   }
 
   render() {
@@ -28,19 +51,43 @@ export class RegisterComponent extends Component {
     }
 
     return (
-      <div className="register-page">
-        <header className="header">
-          <h1 className="title">Register</h1>
-        </header>
-        <div className="content">
-          <div className="username">Username:</div><input ref="username" name="username" type="text" /><br />
-          <div className="email">Email:</div><input ref="email" name="email" type="text" /><br />
-          <div className="password">Password:</div><input ref="password" name="password" type="password" /><br />
-          <button className="register" onClick={() => { this.props.register(this.refs.username.value, this.refs.email.value, this.refs.password.value); }}>Register</button>
-          {notification}
-          <a className="register" href="/signin">Sign in</a>
-        </div>
-      </div>
+      <Grid>
+        <Row>
+          <Col>
+            <NavigationBar />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} md={4} xsOffset={4}>
+            <Panel bsStyle="primary">
+              <Panel.Heading>
+                <Panel.Title componentClass="h3">Register</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body>
+                <form>
+                  <FormGroup controlId="username">
+                    <ControlLabel>Username</ControlLabel>
+                    <FormControl type="text" ref="username" label="Username" placeholder="Username" onChange={this.handleChange} />
+                  </FormGroup>
+                  <FormGroup controlId="email">
+                    <ControlLabel>Email</ControlLabel>
+                    <FormControl type="email" ref="username" label="Email" placeholder="Email" onChange={this.handleChange} />
+                  </FormGroup>
+                  <FormGroup controlId="password">
+                    <ControlLabel>Password</ControlLabel>
+                    <FormControl type="password" ref="password" label="Password" placeholder="Password" onChange={this.handleChange} />
+                  </FormGroup>
+                </form>
+                {notification}
+                <ButtonToolbar>
+                  <Button bsStyle="primary" onClick={() => this.register()}>Register</Button>
+                  <Button onClick={() => this.props.history.push('/signin')}>Sign In</Button>
+                </ButtonToolbar>
+              </Panel.Body>
+            </Panel>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

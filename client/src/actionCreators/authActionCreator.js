@@ -53,7 +53,7 @@ export const login = (username, password) => {
         if (response.error) {
           dispatch(auth.loginFailed(response.error));
         } else {
-          dispatch(auth.loginSuccess(response.message));
+          dispatch(auth.loginSuccess(response.message, username));
         }
       });
   };
@@ -83,5 +83,11 @@ export const logout = () => {
 export const logoutFailed = () => {
   return (dispatch) => {
     dispatch(auth.logoutFailed());
+  };
+};
+
+export const clearNotification = () => {
+  return (dispatch) => {
+    dispatch(auth.clearNotification());
   };
 };

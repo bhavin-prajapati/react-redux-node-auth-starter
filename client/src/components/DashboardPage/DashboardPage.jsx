@@ -3,12 +3,18 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Grid, Col, Row } from 'react-bootstrap';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import { removeCookie } from '../../utils/cookie';
 import { SESSION_COOKIE_NAME } from '../../utils/constants';
 import * as authActionCreator from '../../actionCreators/authActionCreator';
 import './DashboardPage.css';
 
 export class DashboardComponent extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidUpdate() {
     removeCookie(SESSION_COOKIE_NAME); // Ensure cookie is removed
     this.props.history.push('/signin');
@@ -16,18 +22,18 @@ export class DashboardComponent extends Component {
 
   render() {
     return (
-      <div className="dashboard-page">
-        <header className="dashboard-header">
-          <h1 className="dashboard-title">Dashboard Page</h1>
-          <button onClick={this.props.logout}>Logout</button>
-        </header>
-      </div>
+      <Grid>
+        <Row>
+          <Col>
+            <NavigationBar />
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
 
 DashboardComponent.propTypes = {
-  logout: PropTypes.func.isRequired,
   history: PropTypes.object // eslint-disable-line react/forbid-prop-types
 };
 
@@ -43,7 +49,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logout: authActionCreator.logout
+    logout: authActionCreator.logout,
+    clearNotification: authActionCreator.clearNotification
   }, dispatch);
 };
 

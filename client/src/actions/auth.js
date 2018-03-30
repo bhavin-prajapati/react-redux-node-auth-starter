@@ -1,4 +1,4 @@
-import { REGISTER, REGISTER_SUCCESS, REGISTER_FAIL, LOG_IN, LOG_IN_SUCCESS, LOG_IN_FAIL, LOG_OUT, LOG_OUT_SUCCESS, LOG_OUT_FAIL } from '../utils/constants';
+import { REGISTER, REGISTER_SUCCESS, REGISTER_FAIL, LOG_IN, LOG_IN_SUCCESS, LOG_IN_FAIL, LOG_OUT, LOG_OUT_SUCCESS, LOG_OUT_FAIL, CLEAR_NOTIFICATION } from '../utils/constants';
 
 export const register = () => {
   return { type: REGISTER };
@@ -16,8 +16,8 @@ export const login = () => {
   return { type: LOG_IN };
 };
 
-export const loginSuccess = (message) => {
-  return { type: LOG_IN_SUCCESS, data: message };
+export const loginSuccess = (message, username) => {
+  return { type: LOG_IN_SUCCESS, data: message, username };
 };
 
 export const loginFailed = (error) => {
@@ -35,3 +35,10 @@ export const logoutSuccess = (message) => {
 export const logoutFailed = (error) => {
   return { type: LOG_OUT_FAIL, data: error };
 };
+
+export const clearNotification = () => {
+  return { type: CLEAR_NOTIFICATION };
+};
+
+
+

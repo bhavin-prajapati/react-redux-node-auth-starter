@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { getCookie } from '../../utils/cookie';
 import { SESSION_COOKIE_NAME } from '../../utils/constants';
-import * as pageActionCreator from '../../actionCreators/authActionCreator';
+import * as authActionCreator from '../../actionCreators/authActionCreator';
 
 export class SignInComponent extends Component {
   constructor(props) {
@@ -26,6 +26,7 @@ export class SignInComponent extends Component {
     if (getCookie(SESSION_COOKIE_NAME)) {
       this.props.history.push('/dashboard');
     }
+    this.props.clearNotification();
   }
 
   componentDidUpdate() {
@@ -52,7 +53,7 @@ export class SignInComponent extends Component {
     if (error) {
       notification = (<Alert bsStyle="danger"><p>{error}</p></Alert>);
     } else if (message) {
-      notification = (<Alert bsStyle="warning"><p>{message}</p></Alert>);
+      notification = (<Alert bsStyle="info"><p>{message}</p></Alert>);
     }
 
     return (
@@ -95,6 +96,7 @@ export class SignInComponent extends Component {
 
 SignInComponent.propTypes = {
   login: PropTypes.func.isRequired,
+  clearNotification: PropTypes.func.isRequired,
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   pageStatus: PropTypes.string,
   message: PropTypes.string,
@@ -118,7 +120,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    login: pageActionCreator.login
+    login: authActionCreator.login,
+    clearNotification: authActionCreator.clearNotification
   }, dispatch);
 };
 

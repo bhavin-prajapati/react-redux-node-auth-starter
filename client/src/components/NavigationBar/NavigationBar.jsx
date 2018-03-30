@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -8,6 +8,16 @@ import * as pageActionCreator from '../../actionCreators/authActionCreator';
 
 export class NavigationBarComponent extends Component {
   render() {
+    let dropDown = null;
+    if (this.props.username) {
+      dropDown = (
+        <Nav pullRight>
+          <NavDropdown title={this.props.username} id="basic-nav-dropdown">
+            <MenuItem onClick={this.props.logout}>Logout</MenuItem>
+          </NavDropdown>
+        </Nav>);
+    }
+
     return (
       <Navbar>
         <Navbar.Header>
@@ -15,37 +25,25 @@ export class NavigationBarComponent extends Component {
             <a href="#home">React-Redux-Node-Auth-Starter</a>
           </Navbar.Brand>
         </Navbar.Header>
-        <Nav pullRight>
-          <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.1}>Action</MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={3.4}>Separated link</MenuItem>
-          </NavDropdown>
-        </Nav>
+        {dropDown}
       </Navbar>
     );
   }
 }
 
 NavigationBarComponent.propTypes = {
-  login: PropTypes.func.isRequired,
-  history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  pageStatus: PropTypes.string,
-  message: PropTypes.string,
-  error: PropTypes.string
+  logout: PropTypes.func,
+  username: PropTypes.string
 };
 
 NavigationBarComponent.defaultProps = {
-  pageStatus: '',
-  message: '',
-  error: '',
-  history: null
+  logout: () => { },
+  username: ''
 };
 
 const mapStateToProps = (state) => {
   return {
+    username: state.auth.username,
     pageStatus: state.auth.pageStatus,
     message: state.auth.message,
     error: state.auth.error
@@ -54,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    login: pageActionCreator.login
+    logout: pageActionCreator.logout
   }, dispatch);
 };
 

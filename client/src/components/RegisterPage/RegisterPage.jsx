@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { REGISTER_SUCCESS } from '../../utils/constants';
-
 import * as authActionCreator from '../../actionCreators/authActionCreator';
 
 export class RegisterComponent extends Component {
@@ -20,6 +19,10 @@ export class RegisterComponent extends Component {
       email: '',
       password: ''
     };
+  }
+
+  componentWillMount() {
+    this.props.clearNotification();
   }
 
   componentDidUpdate() {
@@ -45,9 +48,9 @@ export class RegisterComponent extends Component {
 
     let notification = '';
     if (error) {
-      notification = <div className="error">{error}</div>;
-    } else {
-      notification = <div className="message">{message}</div>;
+      notification = (<Alert bsStyle="danger"><p>{error}</p></Alert>);
+    } else if (message) {
+      notification = (<Alert bsStyle="warning"><p>{message}</p></Alert>);
     }
 
     return (
@@ -94,6 +97,7 @@ export class RegisterComponent extends Component {
 
 RegisterComponent.propTypes = {
   register: PropTypes.func.isRequired,
+  clearNotification: PropTypes.func.isRequired,
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   pageStatus: PropTypes.string,
   message: PropTypes.string,
@@ -117,7 +121,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    register: authActionCreator.register
+    register: authActionCreator.register,
+    clearNotification: authActionCreator.clearNotification
   }, dispatch);
 };
 

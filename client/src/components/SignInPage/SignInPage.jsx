@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import { Grid, Col, Row, Panel, ButtonToolbar, Button, FormGroup, ControlLabel, FormControl, Alert } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import { getCookie } from '../../utils/cookie';
 import { SESSION_COOKIE_NAME } from '../../utils/constants';
 import * as pageActionCreator from '../../actionCreators/authActionCreator';
-import './SignInPage.css';
 
 export class SignInComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
+
   componentWillMount() {
     // When loading signin page if there's aleady a cookie, go to dashboard
     if (getCookie(SESSION_COOKIE_NAME)) {
@@ -23,29 +35,60 @@ export class SignInComponent extends Component {
     }
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  login() {
+    this.props.login(this.state.username, this.state.password);
+  }
+
   render() {
     const { error, message } = this.props;
 
     let notification = '';
     if (error) {
-      notification = <div className="error">{error}</div>;
-    } else {
-      notification = <div className="message">{message}</div>;
+      notification = (<Alert bsStyle="danger"><p>{error}</p></Alert>);
+    } else if (message) {
+      notification = (<Alert bsStyle="warning"><p>{message}</p></Alert>);
     }
 
     return (
-      <div className="sign-in-page">
-        <header className="header">
-          <h1 className="title">Sign In</h1>
-        </header>
-        <div className="content">
-          <div className="username">Username:</div><input ref="username" name="username" type="text" /><br />
-          <div className="password">Password:</div><input ref="password" name="password" type="password" /><br />
-          <button className="login" onClick={() => { this.props.login(this.refs.username.value, this.refs.password.value); }}>Login</button>
-          {notification}
-          <a className="register" href="/register">Register</a>
-        </div>
-      </div>
+      <Grid>
+        <Row>
+          <Col>
+            <NavigationBar />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} md={4} xsOffset={4}>
+            <Panel bsStyle="primary">
+              <Panel.Heading>
+                <Panel.Title componentClass="h3">Sign In</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body>
+                <form>
+                  <FormGroup controlId="username">
+                    <ControlLabel>Username</ControlLabel>
+                    <FormControl type="email" ref="username" label="Username" placeholder="Username" onChange={this.handleChange} />
+                  </FormGroup>
+                  <FormGroup controlId="password">
+                    <ControlLabel>Password</ControlLabel>
+                    <FormControl type="password" ref="password" label="Password" placeholder="Password" onChange={this.handleChange} />
+                  </FormGroup>
+                </form>
+                {notification}
+                <ButtonToolbar>
+                  <Button bsStyle="primary" onClick={() => this.login()}>Login</Button>
+                  <Button onClick={() => this.props.history.push('/register')}>Register</Button>
+                </ButtonToolbar>
+              </Panel.Body>
+            </Panel>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

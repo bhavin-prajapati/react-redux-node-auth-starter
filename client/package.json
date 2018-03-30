@@ -16,6 +16,7 @@
     "qs": "^6.5.1",
     "query-string": "^5.0.1",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.1",
     "react-html-parser": "^2.0.1",

@@ -8,13 +8,8 @@ import NavigationBar from '../NavigationBar/NavigationBar';
 import { getCookie } from '../../utils/cookie';
 import { SESSION_COOKIE_NAME } from '../../utils/constants';
 import * as authActionCreator from '../../actionCreators/authActionCreator';
-import './DashboardPage.css';
 
 export class DashboardComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     const sid = getCookie(SESSION_COOKIE_NAME);
     if (!sid) {
@@ -38,11 +33,12 @@ export class DashboardComponent extends Component {
 }
 
 DashboardComponent.propTypes = {
-  getUser: PropTypes.func.isRequired,
+  getUser: PropTypes.func,
   history: PropTypes.object // eslint-disable-line react/forbid-prop-types
 };
 
 DashboardComponent.defaultProps = {
+  getUser: () => {},
   history: null
 };
 
@@ -54,7 +50,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logout: authActionCreator.logout,
     getUser: authActionCreator.getUser
   }, dispatch);
 };

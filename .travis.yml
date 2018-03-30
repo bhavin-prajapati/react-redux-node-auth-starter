@@ -5,6 +5,7 @@ install:
   - cd client
   - npm install
 script:
+  - npm run test
   - npm run build
 cache:
   directories:

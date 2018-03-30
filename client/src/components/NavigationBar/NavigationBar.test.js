@@ -7,11 +7,9 @@ configure({ adapter: new Adapter() });
 
 describe('Sign In Page', () => {
   let subject;
-  let mockLogin;
 
   beforeEach(() => {
-    mockLogin = jest.fn();
-    subject = shallow(<NavigationBarComponent login={mockLogin} />);
+    subject = shallow(<NavigationBarComponent />);
   });
 
   it('Can Mount', () => {

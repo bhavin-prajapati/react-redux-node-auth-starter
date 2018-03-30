@@ -7,11 +7,11 @@ configure({ adapter: new Adapter() });
 
 describe('Dashboard Page', () => {
   let subject;
-  let mockLogout;
+  let history;
 
   beforeEach(() => {
-    mockLogout = jest.fn();
-    subject = shallow(<DashboardComponent logout={mockLogout} />);
+    history = { push: () => { } };
+    subject = shallow(<DashboardComponent history={history} />);
   });
 
   it('Can Mount', () => {

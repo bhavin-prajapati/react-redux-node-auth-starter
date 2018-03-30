@@ -96,15 +96,14 @@ export class SignInComponent extends Component {
 
 SignInComponent.propTypes = {
   login: PropTypes.func.isRequired,
-  clearNotification: PropTypes.func.isRequired,
+  clearNotification: PropTypes.func,
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  pageStatus: PropTypes.string,
   message: PropTypes.string,
   error: PropTypes.string
 };
 
 SignInComponent.defaultProps = {
-  pageStatus: '',
+  clearNotification: () => {},
   message: '',
   error: '',
   history: null

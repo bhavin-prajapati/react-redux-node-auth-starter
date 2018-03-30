@@ -97,7 +97,7 @@ export class RegisterComponent extends Component {
 
 RegisterComponent.propTypes = {
   register: PropTypes.func.isRequired,
-  clearNotification: PropTypes.func.isRequired,
+  clearNotification: PropTypes.func,
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   pageStatus: PropTypes.string,
   message: PropTypes.string,
@@ -105,6 +105,7 @@ RegisterComponent.propTypes = {
 };
 
 RegisterComponent.defaultProps = {
+  clearNotification: () => {},
   pageStatus: '',
   message: '',
   error: '',

@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import qs from 'qs';
 import * as auth from '../actions/auth';
-import { BASE_URL, REGISTER_ENDPOINT, SIGNIN_ENDPOINT, LOGOUT_ENDPOINT } from '../utils/constants';
+import { BASE_URL, REGISTER_ENDPOINT, SIGNIN_ENDPOINT, USER_ENDPOINT, LOGOUT_ENDPOINT } from '../utils/constants';
 
 export const register = (username, email, password) => {
   return (dispatch) => {
@@ -54,6 +54,24 @@ export const login = (username, password) => {
           dispatch(auth.loginFailed(response.error));
         } else {
           dispatch(auth.loginSuccess(response.message, username));
+        }
+      });
+  };
+};
+
+export const getUser = () => {
+  return (dispatch) => {
+    const options = {
+      method: 'get',
+      credentials: 'include' // Don't forget to specify this if you need cookies
+    };
+    fetch(BASE_URL + USER_ENDPOINT, options)
+      .then(res => res.json())
+      .then((response) => {
+        if (response.error) {
+          dispatch(auth.getUserFailed(response.error));
+        } else {
+          dispatch(auth.getUserSuccess(response));
         }
       });
   };

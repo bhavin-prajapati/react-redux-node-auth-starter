@@ -9,10 +9,10 @@ import * as pageActionCreator from '../../actionCreators/authActionCreator';
 export class NavigationBarComponent extends Component {
   render() {
     let dropDown = null;
-    if (this.props.username) {
+    if (this.props.user && this.props.user.username) {
       dropDown = (
         <Nav pullRight>
-          <NavDropdown title={this.props.username} id="basic-nav-dropdown">
+          <NavDropdown title={this.props.user.username} id="basic-nav-dropdown">
             <MenuItem onClick={this.props.logout}>Logout</MenuItem>
           </NavDropdown>
         </Nav>);
@@ -22,7 +22,7 @@ export class NavigationBarComponent extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#home">React-Redux-Node-Auth-Starter</a>
+            <a href="/">React-Redux-Node-Auth-Starter</a>
           </Navbar.Brand>
         </Navbar.Header>
         {dropDown}
@@ -33,17 +33,20 @@ export class NavigationBarComponent extends Component {
 
 NavigationBarComponent.propTypes = {
   logout: PropTypes.func,
-  username: PropTypes.string
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    email: PropTypes.string
+  })
 };
 
 NavigationBarComponent.defaultProps = {
   logout: () => { },
-  username: ''
+  user: {}
 };
 
 const mapStateToProps = (state) => {
   return {
-    username: state.auth.username,
+    user: state.auth.user,
     pageStatus: state.auth.pageStatus,
     message: state.auth.message,
     error: state.auth.error

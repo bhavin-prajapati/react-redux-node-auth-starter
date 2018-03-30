@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Grid, Col, Row } from 'react-bootstrap';
 import NavigationBar from '../NavigationBar/NavigationBar';
-import { removeCookie } from '../../utils/cookie';
+import { getCookie } from '../../utils/cookie';
 import { SESSION_COOKIE_NAME } from '../../utils/constants';
 import * as authActionCreator from '../../actionCreators/authActionCreator';
 import './DashboardPage.css';
@@ -15,9 +15,13 @@ export class DashboardComponent extends Component {
     super(props);
   }
 
-  componentDidUpdate() {
-    removeCookie(SESSION_COOKIE_NAME); // Ensure cookie is removed
-    this.props.history.push('/signin');
+  componentWillMount() {
+    const sid = getCookie(SESSION_COOKIE_NAME);
+    if (!sid) {
+      this.props.history.push('/signin');
+    } else {
+      this.props.getUser(sid);
+    }
   }
 
   render() {
@@ -34,6 +38,7 @@ export class DashboardComponent extends Component {
 }
 
 DashboardComponent.propTypes = {
+  getUser: PropTypes.func.isRequired,
   history: PropTypes.object // eslint-disable-line react/forbid-prop-types
 };
 
@@ -50,7 +55,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     logout: authActionCreator.logout,
-    clearNotification: authActionCreator.clearNotification
+    getUser: authActionCreator.getUser
   }, dispatch);
 };
 

@@ -46,6 +46,7 @@ app.post('/auth/signin', User.signin);
 app.get('/auth/logout', User.logout);
 
 // Secure Routes
+app.get('/auth/user', User.loginRequired, User.getUser);
 app.get('/dashboard', User.loginRequired, Dashboard.loadDashboard);
 
 app.use(function (req, res) {

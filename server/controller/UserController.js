@@ -73,6 +73,26 @@ export const signin = (req, res) => {
   });
 };
 
+export const getUser = (req, res) => {
+  db.User.findOne({
+    where: {
+      email: req.user.email,
+    }
+  }).then(user => {
+    if (user) {
+      const userResponse = {
+        username: user.username,
+        email: user.email
+      };
+      return res.send(userResponse);
+    } else {
+      return res.send({
+        error: 'Invalid Username'
+      });
+    }
+  });
+};
+
 export const logout = (req, res) => {
   res.clearCookie(SESSION_COOKIE_NAME);
   return res.send({
@@ -88,4 +108,4 @@ export const loginRequired = (req, res, next) => {
   }
 };
 
-export default { register, signin, loginRequired };
+export default { register, signin, getUser, loginRequired };

@@ -24,24 +24,24 @@ export const register = (req, res) => {
               password: bcrypt.hashSync(req.body.password, 10),
             }).then(user => {
               return res.send({
-                message: 'User successfully created.'
+                message: 'User successfully created'
               });
             });
           } else {
             return res.send({
-              error: 'User with this email already exists.'
+              error: 'User with this email already exists'
             });
           }
         });
       } else {
         return res.send({
-          error: 'User with this username already exists.'
+          error: 'User with this username already exists'
         });
       }
     });
   } else {
     return res.send({
-      error: 'Invalid Request'
+      error: 'Invalid request'
     });
   }
 };
@@ -56,18 +56,18 @@ export const signin = (req, res) => {
       const isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
       if (!isPasswordValid) {
         return res.send({
-          error: 'Invalid Username or Password'
+          error: 'Invalid username or password'
         });
       } else {
         const jwt_token = jwt.sign({ username: user.username, email: user.email, id: user.id }, JWT_SECRET);
         res.cookie(SESSION_COOKIE_NAME, jwt_token, { maxAge: 1800000 });
         return res.send({
-          message: 'User login successful.'
+          message: 'User login successful'
         });
       }
     } else {
       return res.send({
-        error: 'Invalid Username or Password'
+        error: 'Invalid username or password'
       });
     }
   });
@@ -87,7 +87,7 @@ export const getUser = (req, res) => {
       return res.send(userResponse);
     } else {
       return res.send({
-        error: 'Invalid Username'
+        error: 'Invalid username'
       });
     }
   });
@@ -96,7 +96,7 @@ export const getUser = (req, res) => {
 export const logout = (req, res) => {
   res.clearCookie(SESSION_COOKIE_NAME);
   return res.send({
-    message: 'User logout successful.'
+    message: 'User logout successful'
   });
 };
 
@@ -104,7 +104,7 @@ export const loginRequired = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    return res.status(401).json({ message: 'Unauthorized user!' });
+    return res.status(401).json({ message: 'Unauthorized' });
   }
 };
 

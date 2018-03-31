@@ -6,11 +6,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+<p align="center">
+
 ### `Sign In`
 ![Screenshot](client/public/signin.png?raw=true)
 
 ### `Register`
 ![Screenshot](client/public/register.png?raw=true)
+
+</p>
 
 ## Client
 
@@ -140,7 +144,7 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### License
+## License
 
 This source code is licensed under the MIT
 license found in the [LICENSE](https://github.com/bhavin-prajapati/react-redux-node-auth-starter/blob/master/LICENSE)

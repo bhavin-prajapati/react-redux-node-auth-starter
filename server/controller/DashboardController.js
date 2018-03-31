@@ -5,7 +5,7 @@ const db = require('../db/models');
 
 export const loadDashboard = (req, res, next) => {
     return res.send({
-      dashboard: 'Secret dashboardy stuff here'
+      data: 'This sentence is retrieved from a secure endpoint and can only be accessed when signed in.'
     });
 };
 

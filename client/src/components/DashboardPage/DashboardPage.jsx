@@ -55,13 +55,14 @@ DashboardComponent.propTypes = {
   history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   dashboard: PropTypes.shape({
     data: PropTypes.string
-  }).isRequired
+  })
 };
 
 DashboardComponent.defaultProps = {
   getUser: () => { },
   loadDashboard: () => { },
-  history: null
+  history: null,
+  dashboard: null
 };
 
 const mapStateToProps = (state) => {

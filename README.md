@@ -142,10 +142,9 @@ You will also see any lint errors in the console.
 
 ### License
 
-Copyright © 2014-present Kriasoft, LLC. This source code is licensed under the MIT
-license found in the [LICENSE.txt](https://github.com/kriasoft/react-starter-kit/blob/master/LICENSE.txt)
-file. The documentation to the project is licensed under the
-[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
+This source code is licensed under the MIT
+license found in the [LICENSE](https://github.com/bhavin-prajapati/react-redux-node-auth-starter/blob/master/LICENSE)
+file.
 
 ---
 Made with ♥ by Bhavin Prajapati

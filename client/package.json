@@ -43,6 +43,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**.{js,jsx} --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/registerServiceWorker.js --coverage",
     "coverage": "npm run test; open file:///$PWD/coverage/lcov-report/index.html",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "lint": "./node_modules/.bin/eslint . --fix",
     "eject": "react-scripts eject"
   },

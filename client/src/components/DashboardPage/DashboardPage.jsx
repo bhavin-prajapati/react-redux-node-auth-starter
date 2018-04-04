@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Grid, Col, Row, Jumbotron, Button } from 'react-bootstrap';
+import { Grid, Col, Row, Jumbotron } from 'react-bootstrap';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { getCookie } from '../../utils/cookie';
 import { SESSION_COOKIE_NAME } from '../../utils/constants';

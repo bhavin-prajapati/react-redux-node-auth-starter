@@ -25,4 +25,3 @@ export const LOGOUT_ENDPOINT = '/auth/logout';
 export const DASHBOARD_ENDPOINT = '/dashboard';
 export const SESSION_COOKIE_NAME = '_sid';
 
-

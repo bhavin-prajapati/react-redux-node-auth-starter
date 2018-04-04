@@ -1,11 +1,7 @@
 [![Build Status](https://travis-ci.org/bhavin-prajapati/react-redux-node-auth-starter.svg?branch=master)](https://travis-ci.org/bhavin-prajapati/react-redux-node-auth-starter)
-
 [![Coverage Status](https://coveralls.io/repos/github/bhavin-prajapati/react-redux-node-auth-starter/badge.svg?branch=master)](https://coveralls.io/github/bhavin-prajapati/react-redux-node-auth-starter?branch=master)
-
 [![Dependency Status](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter.svg?style=flat-square)](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter)
-
-[![devDependency Status]
-(https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter/dev-status.svg?style=flat-square)](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter#info=devDependencies)
+[![devDependency Status](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter/dev-status.svg?style=flat-square)](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter#info=devDependencies)
 
 
 # react-redux-node-auth-starter

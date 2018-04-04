@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/bhavin-prajapati/react-redux-node-auth-starter.svg?branch=master)](https://travis-ci.org/bhavin-prajapati/react-redux-node-auth-starter)
+[![Dependency Status](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter.svg?style=flat-square)](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter)
+[![devDependency Status](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter/dev-status.svg?style=flat-square)](https://david-dm.org/bhavin-prajapati/react-redux-node-auth-starter#info=devDependencies)
+
 
 # react-redux-node-auth-starter
 

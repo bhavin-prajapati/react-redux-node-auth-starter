@@ -1,5 +1,9 @@
 {
     "extends": "airbnb",
+    "plugins": [
+      "react",
+      "jsx-a11y"
+    ],
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",

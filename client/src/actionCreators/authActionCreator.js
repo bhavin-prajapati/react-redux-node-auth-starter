@@ -1,26 +1,10 @@
-import fetch from 'node-fetch';
-import qs from 'qs';
+import api from '../utils/api';
 import * as auth from '../actions/auth';
-import { BASE_URL, REGISTER_ENDPOINT, SIGNIN_ENDPOINT, USER_ENDPOINT, LOGOUT_ENDPOINT } from '../utils/constants';
 
 export const register = (username, email, password) => {
   return (dispatch) => {
     dispatch(auth.register());
-
-    // Register call
-    const options = {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      body: qs.stringify({
-        username: username,
-        email: email,
-        password: password
-      })
-    };
-    fetch(BASE_URL + REGISTER_ENDPOINT, options)
-      .then(res => res.json())
+    api.register(username, email, password)
       .then((response) => {
         if (response.error) {
           dispatch(auth.registerFailed(response.error));
@@ -34,21 +18,7 @@ export const register = (username, email, password) => {
 export const login = (username, password) => {
   return (dispatch) => {
     dispatch(auth.login(username, password));
-
-    // Login call
-    const options = {
-      method: 'post',
-      credentials: 'include', // Don't forget to specify this if you need cookies
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      body: qs.stringify({
-        username: username,
-        password: password
-      })
-    };
-    fetch(BASE_URL + SIGNIN_ENDPOINT, options)
-      .then(res => res.json())
+    api.login(username, password)
       .then((response) => {
         if (response.error) {
           dispatch(auth.loginFailed(response.error));
@@ -61,12 +31,8 @@ export const login = (username, password) => {
 
 export const getUser = () => {
   return (dispatch) => {
-    const options = {
-      method: 'get',
-      credentials: 'include' // Don't forget to specify this if you need cookies
-    };
-    fetch(BASE_URL + USER_ENDPOINT, options)
-      .then(res => res.json())
+    dispatch(auth.getUser());
+    api.getUser()
       .then((response) => {
         if (response.error) {
           dispatch(auth.getUserFailed(response.error));
@@ -80,14 +46,7 @@ export const getUser = () => {
 export const logout = () => {
   return (dispatch) => {
     dispatch(auth.logout());
-
-    // Logout call
-    const options = {
-      method: 'get',
-      credentials: 'include' // Don't forget to specify this if you need cookies
-    };
-    fetch(BASE_URL + LOGOUT_ENDPOINT, options)
-      .then(res => res.json())
+    api.logout()
       .then((response) => {
         if (response.error) {
           dispatch(auth.logoutFailed(response.error));
@@ -95,12 +54,6 @@ export const logout = () => {
           dispatch(auth.logoutSuccess(response.message));
         }
       });
-  };
-};
-
-export const logoutFailed = () => {
-  return (dispatch) => {
-    dispatch(auth.logoutFailed());
   };
 };
 

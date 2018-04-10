@@ -1,15 +1,10 @@
-import fetch from 'node-fetch';
+import api from '../utils/api';
 import * as dashboard from '../actions/dashboard';
-import { BASE_URL, DASHBOARD_ENDPOINT } from '../utils/constants';
 
 export const loadDashboard = () => {
   return (dispatch) => {
-    const options = {
-      method: 'get',
-      credentials: 'include' // Don't forget to specify this if you need cookies
-    };
-    fetch(BASE_URL + DASHBOARD_ENDPOINT, options)
-      .then(res => res.json())
+    dispatch(dashboard.loadDashboard());
+    api.loadDashboard()
       .then((response) => {
         if (response.error) {
           dispatch(dashboard.loadDashboardFailed(response.error));

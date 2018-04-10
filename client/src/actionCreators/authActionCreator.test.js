@@ -162,4 +162,21 @@ describe('AuthActionCreator', () => {
       });
     });
   });
+
+  describe('Clear Notifications', () => {
+    beforeEach(() => {
+      dispatch = jest.fn();
+    });
+
+    describe('action success', () => {
+      beforeEach(() => {
+        authActionCreator.clearNotification()(dispatch);
+      });
+
+      it('Should dispatch the LOGOUT_SUCCESS action', () => {
+        expect(dispatch.mock.calls).toHaveLength(1);
+        expect(dispatch).toBeCalledWith(auth.clearNotification());
+      });
+    });
+  });
 });

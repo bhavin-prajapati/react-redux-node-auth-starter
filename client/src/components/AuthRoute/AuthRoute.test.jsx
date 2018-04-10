@@ -9,18 +9,32 @@ describe('Authenticaion Route', () => {
   let subject;
   let mockComponent;
 
-  beforeEach(() => {
-    mockComponent = () => {};
-    subject = shallow(<AuthRoute
-      component={mockComponent}
-    />);
+  describe('Redirect', () => {
+    beforeEach(() => {
+      mockComponent = () => { };
+      subject = shallow(<AuthRoute
+        component={mockComponent}
+      />);
+    });
+
+    it('Redirects to URL', () => {
+      expect(subject).toHaveLength(1);
+      expect(subject.text()).toEqual('<Redirect />');
+    });
   });
 
-  it('Can Mount', () => {
-    expect(subject).toHaveLength(1);
-  });
+  describe('Component', () => {
+    beforeEach(() => {
+      mockComponent = () => { };
+      document.cookie = '_sid=12345;max-age=60';
+      subject = shallow(<AuthRoute
+        component={mockComponent}
+      />);
+    });
 
-  it('Redirects to URL', () => {
-    expect(subject.text()).toEqual('<Route />');
+    it('Renders the component', () => {
+      expect(subject).toHaveLength(1);
+      expect(subject.text()).toEqual('<mockComponent />');
+    });
   });
 });

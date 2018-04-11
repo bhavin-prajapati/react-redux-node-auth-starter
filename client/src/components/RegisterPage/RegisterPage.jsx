@@ -74,7 +74,7 @@ export class RegisterComponent extends Component {
                   </FormGroup>
                   <FormGroup controlId="email">
                     <ControlLabel>Email</ControlLabel>
-                    <FormControl type="email" ref="username" label="Email" placeholder="Email" onChange={this.handleChange} />
+                    <FormControl type="email" ref="email" label="Email" placeholder="Email" onChange={this.handleChange} />
                   </FormGroup>
                   <FormGroup controlId="password">
                     <ControlLabel>Password</ControlLabel>

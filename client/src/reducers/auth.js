@@ -19,6 +19,8 @@ export default (state = Object.assign({}), action) => {
     case (REGISTER):
       return Object.assign({}, state, {
         pageStatus: REGISTER,
+        message: null,
+        error: null,
         prevPageStatus: state.pageStatus
       });
     case (REGISTER_SUCCESS):
@@ -46,9 +48,9 @@ export default (state = Object.assign({}), action) => {
       return Object.assign({}, state, {
         pageStatus: LOG_IN_SUCCESS,
         message: action.data,
-        username: action.username,
         error: null,
-        prevPageStatus: state.pageStatus
+        prevPageStatus: state.pageStatus,
+        username: action.username
       });
     case (LOG_IN_FAIL):
       return Object.assign({}, state, {
@@ -59,19 +61,25 @@ export default (state = Object.assign({}), action) => {
       });
     case (GET_USER):
       return Object.assign({}, state, {
+        pageStatus: GET_USER,
         message: null,
-        error: null
+        error: null,
+        prevPageStatus: state.pageStatus
       });
     case (GET_USER_SUCCESS):
       return Object.assign({}, state, {
+        pageStatus: GET_USER,
         message: null,
-        user: action.data,
-        error: null
+        error: null,
+        prevPageStatus: state.pageStatus,
+        user: action.data
       });
     case (GET_USER_FAIL):
       return Object.assign({}, state, {
+        pageStatus: GET_USER,
         message: null,
-        error: action.data
+        error: action.data,
+        prevPageStatus: state.pageStatus
       });
     case (LOG_OUT):
       return Object.assign({}, state, {
